@@ -29,12 +29,6 @@ public class KaryawanController {
         this.karyawanService = karyawanService;
     }
 
-    @GetMapping("/ok")
-    public ResponseEntity<PagingResponse<Karyawan>> aaaaa(@PathVariable int pageNo,
-            @PathVariable int pageSize) {
-        return ResponseEntity.ok().body(karyawanService.findAllKaryawanWithPage(pageNo, pageSize));
-    }
-
     @GetMapping("/{pageSize}/{pageNo}")
     public ResponseEntity<PagingResponse<Karyawan>> findAllKaryawanWithPage(@PathVariable int pageNo,
             @PathVariable int pageSize) {

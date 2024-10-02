@@ -1,9 +1,13 @@
 package com.rudykart.karyawan.entities;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -27,7 +31,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Getter
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,5 +54,24 @@ public class User {
     @UpdateTimestamp
     @Column(nullable = false)
     private Date updatedAt;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // TODO Auto-generated method stub
+        // throw new UnsupportedOperationException("Unimplemented method
+        // 'getAuthorities'");
+        return Collections.emptyList();
+    }
+
+    @Override
+    public String getUsername() {
+        // TODO Auto-generated method stub
+        return email;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
 
 }
